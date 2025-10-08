@@ -1,0 +1,46 @@
+---
+/** NavBar: app title, search input, create note button */
+---
+<header class="navbar shadow-soft">
+  <div class="navbar__left">
+    <div class="logo" aria-label="Note Keeper">📝</div>
+    <h1 class="title">Note Keeper</h1>
+  </div>
+  <div class="navbar__center">
+    <input id="search" class="input" type="search" placeholder="Search notes..." aria-label="Search notes" />
+  </div>
+  <div class="navbar__right">
+    <button id="create" class="btn primary" type="button" aria-label="Create new note">
+      + New Note
+    </button>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: sticky; top: 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: .75rem 1rem;
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--primary) 10%, transparent), transparent),
+      var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+  .navbar__left { display: flex; align-items: center; gap: .6rem; }
+  .logo { width: 32px; height: 32px; display: grid; place-items: center; background: color-mix(in oklab, var(--primary) 12%, transparent); border-radius: 8px; }
+  .title { font-size: 1rem; margin: 0; }
+  .navbar__center { display: flex; }
+  .navbar__right { display: flex; justify-content: end; }
+  @media (max-width: 900px) {
+    .navbar { grid-template-columns: 1fr 1fr; grid-template-areas: "left right" "center center"; row-gap: 8px; }
+    .navbar__left { grid-area: left; }
+    .navbar__right { grid-area: right; }
+    .navbar__center { grid-area: center; }
+  }
+</style>
+
+<!-- behavior provided by /js/navbar.js -->

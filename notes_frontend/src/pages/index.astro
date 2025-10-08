@@ -1,11 +1,55 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import NavBar from '../components/NavBar.astro';
+import Sidebar from '../components/Sidebar.astro';
+import NoteEditor from '../components/NoteEditor.astro';
+import EmptyState from '../components/EmptyState.astro';
+import '../styles/theme.css';
+import '../styles/global.css';
 ---
 
 <Layout>
-	<Welcome />
+  <div class="app-root">
+    <NavBar client:load />
+    <div class="app-body">
+      <aside class="sidebar-wrap">
+        <Sidebar client:load />
+      </aside>
+      <main class="editor-wrap" id="main-content" tabindex="-1" aria-live="polite">
+        <EmptyState client:load />
+        <NoteEditor client:load />
+      </main>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .app-root {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    background: var(--bg);
+  }
+  .app-body {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 0;
+    height: 100%;
+  }
+  .sidebar-wrap {
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .editor-wrap {
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--primary) 8%, transparent) 0%, transparent 60%),
+      var(--bg);
+  }
+
+  @media (max-width: 900px) {
+    .app-body {
+      grid-template-columns: 1fr;
+    }
+    .sidebar-wrap { height: 40dvh; overflow: auto; border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>

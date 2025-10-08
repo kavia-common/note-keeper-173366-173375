@@ -1,0 +1,37 @@
+---
+/** Sidebar: list of notes, search filtering via bus, emits select/create/delete events */
+---
+<aside class="sidebar">
+  <ul id="list" class="list-reset"></ul>
+</aside>
+
+<style>
+  .sidebar {
+    height: 100%;
+    overflow: auto;
+    padding: .75rem;
+    background: var(--surface);
+  }
+  .item {
+    display: grid;
+    gap: 4px;
+    padding: .6rem .6rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: .6rem;
+    background: linear-gradient(180deg, rgba(37,99,235,0.06), transparent), var(--surface);
+    cursor: pointer;
+    transition: transform .06s ease, background .2s ease, border-color .2s ease;
+  }
+  .item:hover { transform: translateY(-1px); }
+  .item[aria-selected="true"] { border-color: color-mix(in oklab, var(--primary) 40%, var(--border)); outline: 2px solid color-mix(in oklab, var(--primary) 20%, transparent); }
+  .title { font-weight: 600; }
+  .meta { display: flex; justify-content: space-between; align-items: center; }
+  .time { color: var(--muted); font-size: .8rem; }
+  .del {
+    border: none; background: transparent; color: var(--muted-2); cursor: pointer; padding: .2rem .4rem; border-radius: 6px;
+  }
+  .del:hover { color: var(--error); background: color-mix(in oklab, var(--error) 10%, transparent); }
+</style>
+
+<!-- behavior provided by /js/sidebar.js -->

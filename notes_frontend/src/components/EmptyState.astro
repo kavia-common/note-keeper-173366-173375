@@ -1,0 +1,33 @@
+---
+/** EmptyState: CTA to create first note */
+---
+<section class="empty">
+  <div class="card shadow-soft rounded-lg">
+    <h2 class="title">Welcome</h2>
+    <p class="muted">Select a note from the left or create a new one to start writing.</p>
+    <button id="cta" class="btn primary" type="button" aria-label="Create first note">Create a note</button>
+  </div>
+</section>
+
+<style>
+  .empty { display: grid; place-items: center; padding: 2rem; }
+  .card { padding: 1.2rem; border: 1px solid var(--border); background: var(--surface); }
+  .title { margin-top: 0; margin-bottom: .25rem; }
+</style>
+
+<script type="module">
+  document.getElementById('cta')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('editor:create'));
+  });
+
+  // Hide this EmptyState when an id is present; show when none.
+  const section = document.currentScript!.parentElement!.querySelector('.empty') as HTMLElement;
+  function sync() {
+    const url = new URL(location.href);
+    const id = url.searchParams.get('id');
+    section.style.display = id ? 'none' : 'grid';
+  }
+  sync();
+  addEventListener('url:changed', sync);
+  addEventListener('popstate', sync);
+</script>

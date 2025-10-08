@@ -1,0 +1,43 @@
+:root {
+  --color-primary: #2563EB;
+  --color-secondary: #F59E0B;
+  --color-error: #EF4444;
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+
+  --primary: var(--color-primary);
+  --secondary: var(--color-secondary);
+  --error: var(--color-error);
+
+  --border: color-mix(in oklab, var(--text) 12%, transparent);
+  --muted: color-mix(in oklab, var(--text) 60%, white);
+  --muted-2: color-mix(in oklab, var(--text) 40%, white);
+  --ring: color-mix(in oklab, var(--primary) 60%, white);
+  --shadow: 0 6px 24px rgba(17, 24, 39, 0.08), 0 2px 6px rgba(17, 24, 39, 0.05);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.force-light) {
+    --bg: #0f172a;
+    --surface: #111827;
+    --text: #f3f4f6;
+    --border: rgba(255,255,255,0.08);
+    --muted: #9ca3af;
+    --muted-2: #6b7280;
+    --ring: color-mix(in oklab, var(--primary) 60%, black);
+    color-scheme: dark;
+  }
+}
+
+/* Focus ring */
+:where(button, a, input, textarea, [tabindex]) {
+  outline: none;
+}
+:where(button, a, input, textarea, [tabindex]):focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 45%, transparent), 0 0 0 6px color-mix(in oklab, var(--ring) 15%, transparent);
+  border-radius: 10px;
+  transition: box-shadow .15s ease;
+}

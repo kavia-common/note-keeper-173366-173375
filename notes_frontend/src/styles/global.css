@@ -1,0 +1,72 @@
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: var(--bg);
+}
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem .9rem;
+  border-radius: .7rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .08s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn.primary {
+  border-color: color-mix(in oklab, var(--primary) 35%, var(--border));
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 16%, transparent), transparent), var(--surface);
+  color: var(--text);
+}
+.btn.danger {
+  border-color: color-mix(in oklab, var(--error) 35%, var(--border));
+  background: linear-gradient(180deg, color-mix(in oklab, var(--error) 12%, transparent), transparent), var(--surface);
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: .7rem .8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: .6rem;
+  transition: border-color .15s ease, background .2s ease;
+}
+.textarea { min-height: 240px; resize: vertical; line-height: 1.4; }
+.muted { color: var(--muted); }
+.small { font-size: .85rem; }
+
+.list-reset { list-style: none; margin: 0; padding: 0; }
+
+.shadow-soft { box-shadow: var(--shadow); }
+.rounded-lg { border-radius: 12px; }
+
+.toasts {
+  position: fixed;
+  right: 16px; bottom: 16px;
+  display: grid; gap: 8px;
+  z-index: 50;
+}
+.toast {
+  padding: .6rem .8rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-left: 4px solid var(--primary);
+  border-radius: .6rem;
+}
+.toast.error { border-left-color: var(--error); }
